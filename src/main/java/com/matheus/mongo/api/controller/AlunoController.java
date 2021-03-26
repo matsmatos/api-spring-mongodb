@@ -1,8 +1,10 @@
 package com.matheus.mongo.api.controller;
 
+import com.matheus.mongo.api.constant.Constant;
 import com.matheus.mongo.api.model.Aluno;
 import com.matheus.mongo.api.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +16,7 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
+    @Secured({Constant.ROLE_ADMIN})
     @GetMapping("/")
     public List<Aluno> obterAlunos() {
         return this.alunoService.getAllAlunos();
